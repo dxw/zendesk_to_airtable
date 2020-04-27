@@ -2,7 +2,7 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), "..", "lib")
 
 ENV["ZENDESK_API_URL"] = "https://example.zendesk.com/api/v2"
 
-require "zendesk_to_airtable/project_populator"
+require "zendesk_to_airtable"
 require "webmock/rspec"
 
 require "support/stub_helpers"

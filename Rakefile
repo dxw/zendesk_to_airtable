@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), "lib")
 
-require "zendesk_to_airtable/project_populator"
+require "zendesk_to_airtable"
 
 require "rspec/core/rake_task"
 require "standard/rake"
@@ -11,6 +11,6 @@ task default: %i[standard spec]
 
 namespace :project_populator do
   task :import do
-    ZendeskToAirtable::ProjectPopulator.new.run!
+    ZendeskToAirtable.new.run!
   end
 end

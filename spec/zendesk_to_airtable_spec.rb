@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe ZendeskToAirtable::ProjectPopulator do
+RSpec.describe ZendeskToAirtable do
   describe "#import_projects" do
     before do
       stub_zendesk_projects(zendesk_projects)
@@ -31,7 +31,7 @@ RSpec.describe ZendeskToAirtable::ProjectPopulator do
       end
 
       let!(:project_creation_stub) do
-        stub_request(:post, airtable_table_url(ZendeskToAirtable::Project))
+        stub_request(:post, airtable_table_url(Project))
           .with(
             body: {
               "fields": {
@@ -78,7 +78,7 @@ RSpec.describe ZendeskToAirtable::ProjectPopulator do
       end
 
       let!(:project_creation_stub) do
-        stub_request(:post, airtable_table_url(ZendeskToAirtable::Project))
+        stub_request(:post, airtable_table_url(Project))
           .to_return(status: 201, body: {}.to_json, headers: {})
       end
 
@@ -95,11 +95,11 @@ RSpec.describe ZendeskToAirtable::ProjectPopulator do
       [
         {
           "user_id": 4567,
-          "group_id": ZendeskToAirtable::ProjectPopulator::GROUP_ID
+          "group_id": ZendeskToAirtable::GROUP_ID
         },
         {
           "user_id": 1234,
-          "group_id": ZendeskToAirtable::ProjectPopulator::GROUP_ID
+          "group_id": ZendeskToAirtable::GROUP_ID
         },
         {
           "user_id": 10793415,
@@ -141,7 +141,7 @@ RSpec.describe ZendeskToAirtable::ProjectPopulator do
       end
 
       let!(:project_creation_stub) do
-        stub_request(:post, airtable_table_url(ZendeskToAirtable::Person))
+        stub_request(:post, airtable_table_url(Person))
           .with(
             body: {
               "fields": {
@@ -178,7 +178,7 @@ RSpec.describe ZendeskToAirtable::ProjectPopulator do
       end
 
       let!(:project_creation_stub) do
-        stub_request(:post, airtable_table_url(ZendeskToAirtable::Person))
+        stub_request(:post, airtable_table_url(Person))
           .to_return(status: 201, body: {}.to_json, headers: {})
       end
 
