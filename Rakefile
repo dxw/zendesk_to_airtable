@@ -8,3 +8,9 @@ require "standard/rake"
 RSpec::Core::RakeTask.new(:spec)
 
 task default: %i[standard spec]
+
+namespace :project_populator do
+  task :import do
+    ZendeskToAirtable::ProjectPopulator.new.run!
+  end
+end
