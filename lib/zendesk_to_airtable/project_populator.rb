@@ -5,20 +5,26 @@ require "airrecord"
 Dotenv.load
 Airrecord.api_key = ENV["AIRTABLE_API_KEY"]
 
-require_relative "./project"
-require_relative "./user"
+require_relative "./tables/application_table"
+require_relative "./tables/project"
+require_relative "./tables/person"
 
 module ZendeskToAirtable
   class ProjectPopulator
     PROJECT_FIELD_ID = 21915476
     GROUP_ID = 72939
 
+    def run!
+      import_projects
+      import_users
+    end
+
     def import_projects
-      Project.import(projects)
+      Project.import_all(projects)
     end
 
     def import_users
-      User.import(users_in_group)
+      Person.import_all(users_in_group)
     end
 
     private

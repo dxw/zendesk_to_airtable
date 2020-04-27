@@ -35,7 +35,7 @@ RSpec.describe ZendeskToAirtable::ProjectPopulator do
           .with(
             body: {
               "fields": {
-                "ID": 24799369,
+                "Zendesk Project ID": "24799369",
                 "Project Name": "business-bank: Business Bank"
               }
             }.to_json
@@ -141,11 +141,11 @@ RSpec.describe ZendeskToAirtable::ProjectPopulator do
       end
 
       let!(:project_creation_stub) do
-        stub_request(:post, airtable_table_url(ZendeskToAirtable::User))
+        stub_request(:post, airtable_table_url(ZendeskToAirtable::Person))
           .with(
             body: {
               "fields": {
-                "ID": 4567,
+                "Zendesk ID": "4567",
                 "Name": "Bar",
                 "Email": "bar@example.com"
               }
@@ -178,7 +178,7 @@ RSpec.describe ZendeskToAirtable::ProjectPopulator do
       end
 
       let!(:project_creation_stub) do
-        stub_request(:post, airtable_table_url(ZendeskToAirtable::User))
+        stub_request(:post, airtable_table_url(ZendeskToAirtable::Person))
           .to_return(status: 201, body: {}.to_json, headers: {})
       end
 

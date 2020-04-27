@@ -60,7 +60,7 @@ module StubHelpers
     records = projects.map { |project|
       {
         "fields": {
-          "ID": project[:id],
+          "#{ZendeskToAirtable::Project.zendesk_id_field}": project[:id].to_s,
           "Project Name": project[:name]
         },
         "createdTime": "2020-04-24T10:03:53.000Z"
@@ -83,7 +83,7 @@ module StubHelpers
     records = users.map { |user|
       {
         "fields": {
-          "ID": user[:id],
+          "#{ZendeskToAirtable::Person.zendesk_id_field}": user[:id].to_s,
           "Name": user[:name],
           "Email": user[:email]
         },
@@ -91,7 +91,7 @@ module StubHelpers
       }
     }
 
-    stub_request(:get, airtable_table_url(ZendeskToAirtable::User))
+    stub_request(:get, airtable_table_url(ZendeskToAirtable::Person))
       .to_return(
         status: 200,
         body: {
